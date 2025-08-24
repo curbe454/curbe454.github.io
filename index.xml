@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>curbe454</title><link>https://curbe454.github.io/</link><description>Recent content on curbe454</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 02 Jun 2025 04:21:25 +0800</lastBuildDate><atom:link href="https://curbe454.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Ocaml_reverse_start</title><link>https://curbe454.github.io/p/ocaml_reverse_start/</link><pubDate>Mon, 02 Jun 2025 04:21:25 +0800</pubDate><guid>https://curbe454.github.io/p/ocaml_reverse_start/</guid><description>&lt;p>All asm codes are compiled in &lt;a class="link" href="https://godbolt.org/" target="_blank" rel="noopener"
+>https://godbolt.org/&lt;/a>, by &lt;code>x86-64 ocamlopt 5.2.0&lt;/code>.&lt;/p>
+&lt;h1 id="let-declaration">let declaration
+&lt;/h1>&lt;p>Let&amp;rsquo;s start from a simple example. A whole file is written with only two lines:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-ml" data-lang="ml">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">[&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">2&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">3&lt;/span>&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Compiled:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-asm" data-lang="asm">&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.data_begin:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.code_begin:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.gc_roots:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">camlExample&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.3:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">camlExample.2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.2:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">camlExample.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.1:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">7&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.entry:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movl&lt;/span> &lt;span class="no">$21&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%esi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlExample@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rsp&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rbx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="mi">64&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%r14&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rsp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">call&lt;/span> &lt;span class="no">caml_initialize@PLT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rbx&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rsp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlExample.3@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rsi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlExample@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">addq&lt;/span> &lt;span class="no">$8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rsp&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rbx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="mi">64&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%r14&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rsp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">call&lt;/span> &lt;span class="no">caml_initialize@PLT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rbx&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rsp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movl&lt;/span> &lt;span class="no">$1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%eax&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">ret&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.code_end:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.data_end:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.frametable:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The value of the list is stored in segment.&lt;/p>
+&lt;p>The immediate value &lt;code>$21&lt;/code> is the value of a &lt;code>10&lt;/code>, I guess that may bring some benefit for arithmetic (And &lt;code>21 &amp;gt;&amp;gt; 1 == 10&lt;/code>).&lt;/p>
+&lt;p>The &lt;code>3&lt;/code> in &lt;code>camlExample.3&lt;/code> is the &lt;code>1&lt;/code>, and the &lt;code>5&lt;/code> in &lt;code>camlExample.2&lt;/code> is the &lt;code>2&lt;/code>.
+I can see the linked list structure that there&amp;rsquo;s an address right after the integer data(and there&amp;rsquo;s a &lt;code>1&lt;/code> as zero standing for the tail).&lt;/p>
+&lt;p>After get the address of the variables, it calls the function &lt;code>caml_initialize&lt;/code>, the 1st is &lt;code>caml_initialize(camlExample, 10)&lt;/code> and the 2nd is &lt;code>caml_initialize(camlExample+8, camlExample.3)&lt;/code>.
+So I know the data in &lt;code>camlExample&lt;/code> stores the pointer of the variables.
+The official doc also &lt;a class="link" href="https://ocaml.org/manual/5.3/intfc.html#ss:c-low-level-gc-harmony" target="_blank" rel="noopener"
+>mentioned&lt;/a> it.&lt;/p>
+&lt;p>I also see that it &lt;code>mov&lt;/code> a strange value &lt;code>%r14 + 64&lt;/code> to &lt;code>%rsp&lt;/code> to take place of previous &lt;code>%rsp&lt;/code>. This is not easy to explain. In short, OCaml compiler use Emulating Thread Local Storage tech in gcc to let the OCaml processes run as threads of C process, which causes the variable declaration &lt;code>caml_initialize&lt;/code> should use the main thread process stack address &lt;code>%r14 + 0x40&lt;/code>. It doesn&amp;rsquo;t matter and I can just ignore it(although I takes hours to make it up).&lt;/p>
+&lt;h1 id="curry">curry
+&lt;/h1>&lt;h2 id="source-code">Source code
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-ml" data-lang="ml">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">sum_ints&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nn">List&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">fold_left&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">sum_ints&lt;/span> &lt;span class="o">[&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">2&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">3&lt;/span>&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="assembly">Assembly
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-asm" data-lang="asm">&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.data_begin:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.code_begin:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.4:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">caml_curry2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">0x200000000000007&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">camlExample.fun_342&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.gc_roots:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">camlExample&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.fun_342:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">leaq&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rax&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nv">%rbx&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rax&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">ret&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.fun_348:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rax&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="mi">24&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rbx&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rsi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="mi">16&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rbx&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rax&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rsi&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rbx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">jmp&lt;/span> &lt;span class="no">camlStdlib__List.fold_left_380@PLT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.3:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">camlExample.2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.2:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">camlExample.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.1:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">7&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.entry:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">leaq&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="mi">320&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rsp&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%r10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">cmpq&lt;/span> &lt;span class="mi">40&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%r14&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%r10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">jb&lt;/span> &lt;span class="no">.L103&lt;/span> &lt;span class="c1">; goto .L103 when space is not enough
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nl">.L104:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movl&lt;/span> &lt;span class="no">$1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%eax&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlExample.4@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rbx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlStdlib__List@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rdi&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">subq&lt;/span> &lt;span class="no">$48&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%r15&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">call&lt;/span> &lt;span class="no">caml_allocN@PLT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">.L105:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">leaq&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%r15&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rsi&lt;/span> &lt;span class="c1">; heap + 8
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="no">$5367&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rsi&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">; strange metadata
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlExample.fun_348@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rdx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rdx&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">%rsi&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movabsq&lt;/span> &lt;span class="no">$72057594037927941&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rdx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rdx&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rsi&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">; $72057594037927941
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rbx&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">16&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rsi&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">; camlExample.4
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rax&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">24&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rsi&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">; zero (%eax == 1, 1 &amp;gt;&amp;gt; 1 == 0)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rdi&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">32&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rsi&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">; List.fold_left
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlExample@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rsp&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rbx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="mi">64&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%r14&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rsp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">call&lt;/span> &lt;span class="no">caml_initialize@PLT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rbx&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rsp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlExample@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rax&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">%rax&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rax&lt;/span> &lt;span class="c1">; pointer of sum_ints expression
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlExample.3@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="mi">24&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rax&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rbx&lt;/span> &lt;span class="c1">; zero
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="mi">16&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rax&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rax&lt;/span> &lt;span class="c1">; camlExample.4
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">call&lt;/span> &lt;span class="no">camlStdlib__List.fold_left_380@PLT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">.L106:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="no">camlExample@GOTPCREL&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%rip&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">addq&lt;/span> &lt;span class="no">$8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rdi&lt;/span> &lt;span class="c1">; camlExample + 8, pointer of res
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rax&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rsi&lt;/span> &lt;span class="c1">; value of res
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rsp&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rbx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movq&lt;/span> &lt;span class="mi">64&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">%r14&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nv">%rsp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">call&lt;/span> &lt;span class="no">caml_initialize@PLT&lt;/span> &lt;span class="c1">; caml_initialize(camlExample+8, %rsi)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">movq&lt;/span> &lt;span class="nv">%rbx&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%rsp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">movl&lt;/span> &lt;span class="no">$1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">%eax&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">ret&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">.L103:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">push&lt;/span> &lt;span class="no">$33&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">call&lt;/span> &lt;span class="no">caml_call_realloc_stack@PLT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">popq&lt;/span> &lt;span class="nv">%r10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">jmp&lt;/span> &lt;span class="no">.L104&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.code_end:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.data_end:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">camlExample.frametable:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">.L106&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.word&lt;/span> &lt;span class="mi">9&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.word&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="p">(.&lt;/span>&lt;span class="no">L107&lt;/span> &lt;span class="p">-&lt;/span> &lt;span class="p">.)&lt;/span> &lt;span class="err">+&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.quad&lt;/span> &lt;span class="no">.L105&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.word&lt;/span> &lt;span class="mi">11&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.word&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.word&lt;/span> &lt;span class="mi">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.byte&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.byte&lt;/span> &lt;span class="mi">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="p">(.&lt;/span>&lt;span class="no">L108&lt;/span> &lt;span class="p">-&lt;/span> &lt;span class="p">.)&lt;/span> &lt;span class="err">+&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">.L107:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="p">(.&lt;/span>&lt;span class="no">L110&lt;/span> &lt;span class="p">-&lt;/span> &lt;span class="p">.)&lt;/span> &lt;span class="err">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="mi">1053016&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="p">(.&lt;/span>&lt;span class="no">L111&lt;/span> &lt;span class="p">-&lt;/span> &lt;span class="p">.)&lt;/span> &lt;span class="err">+&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="mi">2107600&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">.L108:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="p">(.&lt;/span>&lt;span class="no">L110&lt;/span> &lt;span class="p">-&lt;/span> &lt;span class="p">.)&lt;/span> &lt;span class="err">+&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="mi">1053016&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">.L109:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.ascii&lt;/span> &lt;span class="s">&amp;#34;/app/example.ml\0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">.L111:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="p">(.&lt;/span>&lt;span class="no">L109&lt;/span> &lt;span class="p">-&lt;/span> &lt;span class="p">.)&lt;/span> &lt;span class="err">+&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.ascii&lt;/span> &lt;span class="s">&amp;#34;Example.res\0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nl">.L110:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.long&lt;/span> &lt;span class="p">(.&lt;/span>&lt;span class="no">L109&lt;/span> &lt;span class="p">-&lt;/span> &lt;span class="p">.)&lt;/span> &lt;span class="err">+&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">.ascii&lt;/span> &lt;span class="s">&amp;#34;Example.sum_ints\0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Because the interger in OCaml is &lt;code>OCamlnum == realnum * 2 + 1&lt;/code>, The &lt;code>leaq -1(%rax,%rbx), %rax&lt;/code> in &lt;code>camlExample.fun_342&lt;/code> is doing a plus operation. It&amp;rsquo;s my &lt;code>(fun acc x -&amp;gt; acc + x)&lt;/code>.&lt;/p>
+&lt;p>At &lt;a class="link" href="https://ocaml.org/docs/compiler-backend#the-impact-of-polymorphic-comparison" target="_blank" rel="noopener"
+>here the official doc&lt;/a> said &lt;code>%r15&lt;/code> is used as a heap pointer in my case:&lt;br>
+&lt;code>OCaml on x86_64 architectures caches the location of the minor heap in the %r15 register since it's so frequently referenced in OCaml functions.&lt;/code>&lt;/p>
+&lt;p>It&amp;rsquo;s amazing that there&amp;rsquo;s two ways to curry a function. The first is the &lt;code>camlExample.4&lt;/code>, use a built-in function to curry my lambda function. Another is to build a sequence for a expression, and evaluate it.&lt;/p></description></item><item><title>Archives</title><link>https://curbe454.github.io/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://curbe454.github.io/archives/</guid><description/></item><item><title>Links</title><link>https://curbe454.github.io/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://curbe454.github.io/links/</guid><description/></item><item><title>Search</title><link>https://curbe454.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://curbe454.github.io/search/</guid><description/></item></channel></rss>
