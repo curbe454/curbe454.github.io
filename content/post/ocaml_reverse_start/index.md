@@ -17,13 +17,15 @@ All asm codes are compiled in [https://godbolt.org/](https://godbolt.org/), by `
 
 # let declaration
 
-Let's start from a simple example. A whole file is written with only one line:
+Let's start from a simple example. A whole file is written with only two lines:
 
 ```ml Example.ml
 let a = 10
 
 let b = [1;2;3]
 ```
+
+Compiled:
 
 ```asm
 camlExample.data_begin:
