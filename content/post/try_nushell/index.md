@@ -1,7 +1,7 @@
 ---
 title: "Try nushell and not feel good"
 description: 
-date: 2025-09-27T04:01:42+08:00
+date: 2025-09-27T02:40:42+08:00
 image: 
 math: 
 license: 
@@ -17,7 +17,6 @@ tags:
     - oh-my-posh
     - powershell
 ---
-<!-- 9.26 - 9.27 -->
 # nushell 踩坑记
 
 ## 9.26
