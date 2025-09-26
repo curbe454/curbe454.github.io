@@ -1,0 +1,129 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="nushell 踩坑记 9.26 听说 nushell 很好，我今天试了试，结果差点被劝退了。\n看了一眼官方文档，感觉不错，居然还支持函数式，就一边看文档一边想办法转移我在其他 shell 的配置。\n"><title>Try nushell and not feel good</title><link rel=canonical href=https://curbe454.github.io/p/try-nushell-and-not-feel-good/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="Try nushell and not feel good"><meta property='og:description' content="nushell 踩坑记 9.26 听说 nushell 很好，我今天试了试，结果差点被劝退了。\n看了一眼官方文档，感觉不错，居然还支持函数式，就一边看文档一边想办法转移我在其他 shell 的配置。\n"><meta property='og:url' content='https://curbe454.github.io/p/try-nushell-and-not-feel-good/'><meta property='og:site_name' content='curbe454'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='shell'><meta property='article:tag' content='nushell'><meta property='article:tag' content='awful'><meta property='article:tag' content='oh-my-posh'><meta property='article:tag' content='powershell'><meta property='article:published_time' content='2025-09-27T02:40:42+08:00'><meta property='article:modified_time' content='2025-09-27T02:40:42+08:00'><meta name=twitter:title content="Try nushell and not feel good"><meta name=twitter:description content="nushell 踩坑记 9.26 听说 nushell 很好，我今天试了试，结果差点被劝退了。\n看了一眼官方文档，感觉不错，居然还支持函数式，就一边看文档一边想办法转移我在其他 shell 的配置。\n"><link rel="shortcut icon" href=/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_9057f44b5f8f8c09.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>curbe454</a></h1><h2 class=site-description></h2></div></header><ol class=menu-social><li><a href=https://github.com/curbe454 target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#926>9.26</a></li><li><a href=#927>9.27</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/terminal/>Terminal</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/try-nushell-and-not-feel-good/>Try nushell and not feel good</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Sep 27, 2025</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 3 分钟</time></div></footer></div></header><section class=article-content><h1 id=nushell-踩坑记>nushell 踩坑记</h1><h2 id=926>9.26</h2><p>听说 nushell 很好，我今天试了试，结果差点被劝退了。</p><p>看了一眼官方文档，感觉不错，居然还支持函数式，就一边看文档一边想办法转移我在其他 shell 的配置。</p><p>我首先就是使用我的 oh-my-posh. 这时候就踩坑了。我编写了一个这样的函数：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-nu data-lang=nu><span class=line><span class=cl><span class=k>def</span><span class=w> </span>set-theme<span class=w> </span><span class=o>[</span>name<span class=o>]</span><span class=w> </span><span class=o>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>let</span><span class=w> </span><span class=nv>theme_dir</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s2>$&#34;</span><span class=si>(</span><span class=nv>$env</span>.SCOOP<span class=si>)</span><span class=s2>/apps/oh-my-posh/current/themes&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>let</span><span class=w> </span><span class=nv>theme_omp</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s2>$&#34;</span><span class=si>(</span><span class=nv>$theme_dir</span><span class=si>)</span><span class=s2>/</span><span class=si>(</span><span class=nv>$name</span><span class=si>)</span><span class=s2>.omp.json&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>let</span><span class=w> </span><span class=nv>theme_nu</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s2>$&#34;</span><span class=si>(</span><span class=nv>$theme_dir</span><span class=si>)</span><span class=s2>/theme.nu&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>if</span><span class=w> </span>not<span class=w> </span><span class=o>(</span><span class=nv>$theme_nu</span><span class=w> </span><span class=p>|</span><span class=w> </span><span class=k>path</span><span class=w> </span>exists<span class=o>)</span><span class=w> </span><span class=o>{</span><span class=w> </span><span class=k>touch</span><span class=w> </span><span class=nv>$theme_nu</span><span class=w> </span><span class=o>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>if</span><span class=w> </span><span class=o>(</span><span class=nv>$theme_omp</span><span class=w> </span><span class=p>|</span><span class=w> </span><span class=k>path</span><span class=w> </span>exists<span class=o>)</span><span class=w> </span><span class=o>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>oh-my-posh<span class=w> </span>init<span class=w> </span>nu<span class=w> </span>--config<span class=w> </span><span class=s2>$&#34;</span><span class=si>(</span><span class=nv>$theme_dir</span><span class=si>)</span><span class=s2>/</span><span class=si>(</span><span class=nv>$name</span><span class=si>)</span><span class=s2>.omp.json&#34;</span><span class=w> </span>--print<span class=w> </span>o&gt;<span class=w> </span><span class=nv>$theme_nu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=o>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>source</span><span class=w> </span><span class=nv>$theme_nu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=o>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>思路很简单，就是利用传进来的字符串决定 theme 样式。</p><p>要是有懂 <code>nushell</code> 的就能一眼看出来，这里最重要的代码 <code>source $theme_nu</code> 是完全行不通的，因为这个代码是执行在函数的作用域里面而不是全局作用域。</p><p>我找了 Deepseek 求证了一下，它还给我出一些"在 <code>def</code> 之后加上 <code>--env</code>"，或者把"<code>source</code> 改成 <code>overlay use</code>&ldquo;这样的馊主意。这个 <code>def --env</code> 是在当期望函数可以修改环境变量 <code>$env.*</code> 的时候使用，而 <code>overlay use</code> 是模块化包装，这样也不会把这个作用域给突破。</p><p>我想着这一点也不 shell-like，缺少这个功能，那就根本不是一个正宗的 shell. 我想着能否通过 alias 绕过，结果发现这样会形成 <code>alias theme = set-theme $name; source $theme_file</code> 这样的情况，这就要求 alias 也能输入参数。但是这是不符合 alias 语法的，除非我再引入一个新函数，但是这样还是不能绕过作用域。</p><p>我放弃了，于是把 source 语句放在了 <code>config nu</code> 的文件里，死马当活马医，要是不行我直接删了。结果就成功了，这个 config 是使用全局作用域的，好吧，我承认你是个 shell&mldr;</p><p>以上我折腾了俩小时的成果。。。途中我真的被这个"不能 parse"的错误提示给整急眼了，开始厌恶这个要命的静态解析，我写过 bash 和 powershell, 我哪能遭这种罪，甚至觉得 python 和 C 语言的时候多自由啊，这种这不让做那不让做的能叫 shell 嘛。。。只能说折腾起来真是坑啊。</p><h2 id=927>9.27</h2><p>不行了，我不玩了，我这就删除这个毒瘤。</p><p>我有这样一个奇异的 <code>powershell</code> 脚本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=c># OCaml</span>
+</span></span><span class=line><span class=cl><span class=kd>function</span><span class=w> </span><span class=nb>opamact</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=p>(&amp;</span> <span class=n>opam</span> <span class=n>env</span><span class=p>)</span> <span class=n>-split</span> <span class=s1>&#39;\r?\n&#39;</span> <span class=p>|</span> <span class=nb>ForEach-Object</span> <span class=p>{</span> <span class=nb>Invoke-Expression</span> <span class=nv>$_</span> <span class=p>}</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span><span class=w> </span><span class=nb>ocaml_init_wrapper</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>param</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=no>string</span><span class=p>]</span><span class=nv>$CommandName</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=no>string</span><span class=p>]</span><span class=nv>$ExecutableName</span> <span class=p>=</span> <span class=vm>$null</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=o>-not</span> <span class=nv>$ExecutableName</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nv>$ExecutableName</span> <span class=p>=</span> <span class=nv>$CommandName</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nv>$functionDef</span> <span class=p>=</span> <span class=sh>@&#34;
+</span></span></span><span class=line><span class=cl><span class=sh>  function global:</span><span class=nv>$CommandName</span><span class=sh> {
+</span></span></span><span class=line><span class=cl><span class=sh>    if (-not `</span><span class=nv>$env:OPAM_SWITCH_PREFIX</span><span class=sh>)
+</span></span></span><span class=line><span class=cl><span class=sh>    { opamact }
+</span></span></span><span class=line><span class=cl><span class=sh>
+</span></span></span><span class=line><span class=cl><span class=sh>    &amp; &#34;</span><span class=nv>$ExecutableName</span><span class=sh>&#34; @args
+</span></span></span><span class=line><span class=cl><span class=sh>  }
+</span></span></span><span class=line><span class=cl><span class=sh>&#34;@</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nb>Invoke-Expression</span> <span class=nv>$functionDef</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>ocaml_init_wrapper</span> <span class=s2>&#34;ocaml&#34;</span> <span class=s2>&#34;ocaml.exe&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>ocaml_init_wrapper</span> <span class=s2>&#34;ocamlc&#34;</span> <span class=s2>&#34;ocamlc.exe&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>ocaml_init_wrapper</span> <span class=s2>&#34;ocamldoc&#34;</span> <span class=s2>&#34;ocamldoc.exe&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>ocaml_init_wrapper</span> <span class=s2>&#34;ocamlrun&#34;</span> <span class=s2>&#34;ocamlrun.exe&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>ocaml_init_wrapper</span> <span class=s2>&#34;ocamlopt&#34;</span> <span class=s2>&#34;ocamlopt.exe&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>ocaml_init_wrapper</span> <span class=s2>&#34;dune&#34;</span> <span class=s2>&#34;dune.exe&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>ocaml_init_wrapper</span> <span class=s2>&#34;utop&#34;</span> <span class=s2>&#34;utop.exe&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>之所以要这么整，是因为假设直接 <code>opam env</code> 命令消耗的时间实在是有些长。本来我的电脑就不行，打开一个 <code>powershell</code> 对话就要大概 700 ms. 加上这个直接高达 1.2s, 这谁受得了；于是乎做了个按需加载。不止这个，我还有 conda 和 MSVC 环境呢，这些又应该怎么解决呢（当然这几个肯定要简单一些）。</p><p>我尝试了两个小时企图复现这个逻辑，结果发现这个东西的限制实在是太让人难受，alias 根本绑定不了 <code>source</code> 命令，这对我的动态加载是致命的。我最后最接近的版本是这个：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-nu data-lang=nu><span class=line><span class=cl><span class=c1># OCaml
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>const</span><span class=w> </span><span class=nv>opam_env_file</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s2>$&#34;</span><span class=si>(</span><span class=nv>$code</span><span class=si>)</span><span class=s2>/.opam_env.nu&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>def</span><span class=w> </span><span class=k>get</span>-opamenv<span class=w> </span><span class=o>[]</span><span class=w> </span><span class=o>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>if</span><span class=w> </span>not<span class=w> </span><span class=o>(</span><span class=nv>$opam_env_file</span><span class=w> </span><span class=p>|</span><span class=w> </span><span class=k>path</span><span class=w> </span>exists<span class=o>)</span><span class=w> </span><span class=o>{</span><span class=w> </span><span class=k>touch</span><span class=w> </span><span class=nv>$opam_env_file</span><span class=w> </span><span class=o>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>opam<span class=w> </span>env<span class=w> </span>--shell<span class=o>=</span>powershell<span class=w> </span><span class=p>|</span><span class=w> </span><span class=k>lines</span><span class=w> </span><span class=p>|</span><span class=w> </span><span class=k>each</span><span class=w> </span><span class=o>{</span><span class=p>|</span>e<span class=p>|</span><span class=w> </span><span class=k>str</span><span class=w> </span>replace<span class=w> </span><span class=s2>&#34;$env:&#34;</span><span class=w> </span><span class=s2>&#34;$env.&#34;</span><span class=o>}</span><span class=w> </span>o&gt;<span class=w> </span><span class=nv>$opam_env_file</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=o>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>alias</span><span class=w> </span><span class=nv>opamact</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>get</span>-opamenv<span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>source</span><span class=w> </span><span class=nv>$opam_env_file</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>是的，这样也未尝不可。每次使用了 <code>opamact</code> 或者 <code>get-opamenv</code> 之后记得再使用 <code>source</code> 命令就好。然后才能执行 <code>ocaml.exe</code>, <code>ocamlc.exe</code> 这些程序。。。一个命令只做一件事，十分符合 <code>nushell</code> 尊崇的 Unix 教义，对吧？
+F**k, can you understand why I just do these in <code>powershell</code>? 这个 <code>nushell</code> 的这一部分设计的一点也不好，让 shell 失去了它应该做到的动态加载的部分，给它加上了一把名叫 <code>parse</code> 的枷锁。我难受极了，感觉像被喂了 s**t.</p><p><code>scoop uninstall nu</code>, 启动！</p></section><footer class=article-footer><section class=article-tags><a href=/tags/shell/>Shell</a>
+<a href=/tags/nushell/>Nushell</a>
+<a href=/tags/awful/>Awful</a>
+<a href=/tags/oh-my-posh/>Oh-My-Posh</a>
+<a href=/tags/powershell/>Powershell</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><div class=disqus-container></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2025 curbe454</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.31.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
