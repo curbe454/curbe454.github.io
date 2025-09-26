@@ -12,6 +12,7 @@ categories:
     - reverse
 tags:
     - reverse
+    - OCaml
 ---
 All asm codes are compiled in [https://godbolt.org/](https://godbolt.org/), by `x86-64 ocamlopt 5.2.0`.
 
