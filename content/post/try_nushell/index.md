@@ -16,10 +16,13 @@ tags:
     - awful
     - oh-my-posh
     - powershell
+    - elvish
 ---
 # nushell 踩坑记
 
-## 9.26
+目前我使用 Windows 操作系统。但是 Windows PowerShell / pwsh 7 的启动速度众所周知地慢。
+
+## 2025.9.26
 
 听说 nushell 很好，我今天试了试，结果差点被劝退了。
 
@@ -54,7 +57,7 @@ def set-theme [name] {
 
 以上我折腾了俩小时的成果。。。途中我真的被这个"不能 parse"的错误提示给整急眼了，开始厌恶这个要命的静态解析，我写过 bash 和 powershell, 我哪能遭这种罪，甚至觉得 python 和 C 语言的时候多自由啊，这种这不让做那不让做的能叫 shell 嘛。。。只能说折腾起来真是坑啊。
 
-## 9.27
+## 2025.9.27
 
 不行了，我不玩了，我这就删除这个毒瘤。
 
@@ -115,3 +118,7 @@ source $opam_env_file
 F\*\*k, can you understand why I just do these in `powershell`? 这个 `nushell` 的这一部分设计的一点也不好，让 shell 失去了它应该做到的动态加载的部分，给它加上了一把名叫 `parse` 的枷锁。我难受极了，感觉像被喂了 s\*\*t.
 
 `scoop uninstall nu`, 启动！
+
+## 2026.9.6
+
+最近在尝试 [elvish](https://github.com/elves/elvish)，用 go 写的，支持 Unicode，目前感觉还不错。
